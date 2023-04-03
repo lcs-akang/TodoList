@@ -31,17 +31,32 @@ struct ListView: View {
                 
                 List {
                     
-                    HStack {
+                    HStack(spacing: 15) {
+                        Image(systemName: "circle")
+                            .foregroundColor(.blue)
                         
+                        Text("Study for Physics quiz")
                     }
                     
+                    HStack(spacing: 15) {
+                        Image(systemName: "checkmark.circle")
+                            .foregroundColor(.blue)
+                        
+                        Text("Finish Computer Science Assignment")
+                    }
+                    
+                    HStack(spacing: 15) {
+                        Image(systemName: "circle")
+                            .foregroundColor(.blue)
+                        
+                        Text("Go for a run")
+                    }
                 }
                 
             }
-            
-            
-            
+            .navigationTitle("To do")
         }
+            
     }
 }
 

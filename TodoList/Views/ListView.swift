@@ -25,7 +25,16 @@ struct ListView: View {
                     TextField("Enter a to-do item", text: $newItemDescription)
                     
                     Button(action: {
+                        let lastId = todoItems.last!.id
+                        let newId = lastId + 1
                         
+                        let newTodoItem = TodoItem(id: newId,
+                                                   description: newItemDescription,
+                                                   completed: false)
+                        
+                        todoItems.append(newTodoItem)
+                        
+                        newItemDescription = " "
                     }, label: {
                         Text("ADD")
                             .font(.caption)
@@ -34,7 +43,7 @@ struct ListView: View {
                 }
                 .padding(20)
                 
-                List(existingTodoItems) { currentItem in
+                List(todoItems) { currentItem in
                     
                     Label(title: {
                         Text(currentItem.description)

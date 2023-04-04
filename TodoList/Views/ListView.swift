@@ -9,6 +9,11 @@ import SwiftUI
 
 struct ListView: View {
     
+    // MARK: Stored properties
+    
+    @State var todoItems: [TodoItem] = existingTodoItems
+    @State var newItemDescription: String = " "
+    
     // MARK: Computed properties
     var body: some View {
         
@@ -17,7 +22,7 @@ struct ListView: View {
             VStack {
                 
                 HStack {
-                    TextField("Enter a to-do item", text: Binding.constant(""))
+                    TextField("Enter a to-do item", text: $newItemDescription)
                     
                     Button(action: {
                         
@@ -29,28 +34,19 @@ struct ListView: View {
                 }
                 .padding(20)
                 
-                List {
+                List(existingTodoItems) { currentItem in
                     
-                    HStack(spacing: 15) {
-                        Image(systemName: "circle")
-                            .foregroundColor(.blue)
-                        
-                        Text("Study for Physics quiz")
+                    Label(title: {
+                        Text(currentItem.description)
+                    }, icon: {
+                        if currentItem.completed == true {
+                            Image(systemName: "checkmark.circle")
+                        }
+                        else {
+                            Image(systemName: "circle")
+                        }
                     }
-                    
-                    HStack(spacing: 15) {
-                        Image(systemName: "checkmark.circle")
-                            .foregroundColor(.blue)
-                        
-                        Text("Finish Computer Science Assignment")
-                    }
-                    
-                    HStack(spacing: 15) {
-                        Image(systemName: "circle")
-                            .foregroundColor(.blue)
-                        
-                        Text("Go for a run")
-                    }
+                    )
                 }
                 
             }
